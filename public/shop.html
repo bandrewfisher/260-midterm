@@ -5,32 +5,35 @@
     <title>Shops</title>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <script src="javascripts/app.js"></script>
 
     <style>
         body {
-            padding-left: 10px;
+            padding: 10px;
+        }
+        
+        .list-group-item:hover {
+            background-color: #E7EAED;
         }
     </style>
 </head>
 
 <body ng-app="shopApp" ng-controller="mainCtrl">
-    <h1>Shopping Interface</h1>
+    <center style="font-family: Lobster"><h1>Shopping Interface</h1></center>
     <h1>Current Products</h1>
-    
-    <div ng-repeat="item in products | orderBy:'Name'">
-        <input 
-            type="checkbox"
-            ng-checked="shoppingCart.indexOf(item) > -1"
-            ng-click="updateCart(item._id)">
-        {{item.Name}} - price {{item.Price}}
-        <img src="{{item.ImageUrl}}">
+
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action" ng-repeat="item in products | orderBy:'Name'">
+            <input type="checkbox" ng-checked="shoppingCart.indexOf(item) > -1" ng-click="updateCart(item._id)"> {{item.Name}} - price {{item.Price}}
+            <img src="{{item.ImageUrl}}">
+        </div>
     </div>
-    <button ng-click="sendOrder()">Submit Purchase</button>
-    
+    <button class="btn btn-info" ng-click="sendOrder()">Submit Purchase</button>
+
     <h1>Shopping Cart</h1>
     <div ng-repeat="item in shoppingCart | orderBy: 'Name'">
-        {{item.Name}} - price {{item.Price}} 
+        {{item.Name}} - price {{item.Price}}
         <img src="{{item.ImageUrl}}">
     </div>
 </body>

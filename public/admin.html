@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Admin</title>
-         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <script src="javascripts/app.js"></script>
+
+<head>
+    <title>Admin</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <script src="javascripts/app.js"></script>
+
+    <style>
+        body {
+            padding: 10px;
+        }
         
-        <style>
-            body {
-                padding-left: 10px;
-            }
-        </style>
-    </head>
-    
-    <body ng-app="shopApp" ng-controller="mainCtrl">
-        <h1>Store Management Interface</h1>
-        <label>Product Name</label>
-        <input type="text" ng-model="newProductName"><br>
-        
-        <label>Price</label>
-        <input type="text" ng-model="newProductPrice"><br>
-        
-        <label>Picture URL</label>
-        <input type="text" ng-model="newProductPicture"><br>
-        <button class="btn btn-info" ng-click="addProduct()">Add Product</button>
-        
-        <h1>Current Products</h1>
-        <div ng-repeat="item in products | orderBy: 'Name'">
-             <span class="glyphicon glyphicon-remove"
-                ng-click="removeItem(item._id)"></span>
-            {{item.Name}} - price {{item.Price}} - ordered {{item.Ordered}}
+        .glyphicon {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body ng-app="shopApp" ng-controller="mainCtrl">
+    <center><h1 style="font-family: Lobster">Store Management Interface</h1></center>
+    <table class="table table-striped table-sm">
+        <tr>
+            <td style="width: 10%"><label>Product Name</label></td>
+            <td><input type="text" ng-model="newProductName"></td>
+        </tr>
+
+        <tr>
+            <td style="width: 10%"><label>Price</label></td>
+            <td><input type="text" ng-model="newProductPrice"></td>
+        </tr>
+
+        <tr>
+            <td style="width: 10%"><label>Picture URL</label></td>
+            <td><input type="text" ng-model="newProductPicture"></td>
+        </tr>
+    </table>
+    <button class="btn btn-info" ng-click="addProduct()">Add Product</button>
+
+    <h1>Current Products</h1>
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" ng-repeat="item in products | orderBy: 'Name'">
+            <span class="glyphicon glyphicon-remove" ng-click="removeItem(item._id)"></span> {{item.Name}} - price {{item.Price}} - ordered {{item.Ordered}}
             <img src="{{item.ImageUrl}}">
-        </div>
-    </body>
-    
+        </a>
+    </div>
+</body>
+
 </html>
