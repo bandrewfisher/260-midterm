@@ -23,7 +23,7 @@
         
         <label>Picture URL</label>
         <input type="text" ng-model="newProductPicture"><br>
-        <button ng-click="addProduct()">Add Product</button>
+        <button class="btn btn-info" ng-click="addProduct()">Add Product</button>
         
         <h1>Current Products</h1>
         <div ng-repeat="item in products | orderBy: 'Name'">

@@ -19,13 +19,20 @@
     <h1>Current Products</h1>
     
     <div ng-repeat="item in products | orderBy:'Name'">
-        <input type="checkbox">
+        <input 
+            type="checkbox"
+            ng-checked="shoppingCart.indexOf(item) > -1"
+            ng-click="updateCart(item._id)">
         {{item.Name}} - price {{item.Price}}
         <img src="{{item.ImageUrl}}">
     </div>
-    <button>Submit Purchase</button>
+    <button ng-click="sendOrder()">Submit Purchase</button>
     
     <h1>Shopping Cart</h1>
+    <div ng-repeat="item in shoppingCart | orderBy: 'Name'">
+        {{item.Name}} - price {{item.Price}} 
+        <img src="{{item.ImageUrl}}">
+    </div>
 </body>
 
 </html>

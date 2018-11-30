@@ -39,4 +39,37 @@ app.controller('mainCtrl', function($scope, $http) {
             })
         $scope.getProducts();
     }
+    
+    $scope.findItemById = function(id) {
+        for(var i=0; i<$scope.products.length; i++) {
+            if($scope.products[i]._id == id) {
+                return $scope.products[i];
+            }
+        }
+    }
+    
+    $scope.updateCart = function(id) {
+        var idx = $scope.shoppingCart.indexOf($scope.findItemById(id));
+        
+        if(idx > -1) {
+            $scope.shoppingCart.splice(idx, 1);
+        }
+        
+        else {
+            $scope.shoppingCart.push($scope.findItemById(id));
+        }
+        
+        console.log($scope.shoppingCart);
+    }
+    
+    $scope.sendOrder = function() {
+        for(var i=0; i<$scope.shoppingCart.length; i++) {
+            $http.put('/products/'+$scope.shoppingCart[i]._id)
+                .success(function(data) {
+                    console.log("Added order");
+                })
+        }
+        $scope.shoppingCart = [];
+    }
+
 })

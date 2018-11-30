@@ -45,4 +45,11 @@ router.delete('/products/:item', function(req, res, next) {
     res.sendStatus(200);
 })
 
+router.put('/products/:item', function(req, res, next) {
+   req.item.addOrder(function(err, item) {
+       if(err) console.error(err);
+       else res.json(item);
+   }) 
+});
+
 module.exports = router;
