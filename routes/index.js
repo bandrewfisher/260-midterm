@@ -8,6 +8,10 @@ router.get('/admin', function(req, res, next) {
   res.sendFile('admin.html', {root: 'public'});
 });
 
+router.get('/shop', function(req, res, next){
+    res.sendFile('shop.html', {root: 'public'});
+})
+
 router.post('/newProduct', function(req, res, next) {
     console.log("Adding new product");
     var item = new Shop(req.body);
